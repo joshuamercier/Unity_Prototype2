@@ -6,7 +6,7 @@ public class DestroyOutOfBounds : MonoBehaviour
 {
     // Class variables
     private float topBound = 30;
-    private float lowerBound = -10;
+    private float lowerBound = -5;
     private float rightBound = 30;
     private GameManager gameManager;
     // Start is called before the first frame update
