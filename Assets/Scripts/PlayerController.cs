@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     // Class variables
     private float horizontalInput;
+    private float verticalInput;
 
     public float speed = 10.0f;
     public float xRange = 20.0f; // Boundary of player X-axis
+    public float zUpperRange = 16.0f; // boundary of player upper Z-axis
+    public float zLowerRange = -1.0f; // boundary of player lower Z-axis
     public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,16 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+        // Keep player in upper boundary
+        if(transform.position.z > zUpperRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zUpperRange);
+        }
+        // Keep player in lower boundary
+        if (transform.position.z < zLowerRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zLowerRange);
+        }
 
         // Check that player is throwing
         if (Input.GetKeyDown(KeyCode.Space))
@@ -39,5 +52,8 @@ public class PlayerController : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
     }
 }
