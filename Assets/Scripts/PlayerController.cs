@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 10.0f;
     public float xRange = 20.0f; // Boundary of player X-axis
-    public float zUpperRange = 16.0f; // boundary of player upper Z-axis
-    public float zLowerRange = -1.0f; // boundary of player lower Z-axis
+    public float zUpperRange = 18.0f; // boundary of player upper Z-axis
+    public float zLowerRange = -3.5f; // boundary of player lower Z-axis
     public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
