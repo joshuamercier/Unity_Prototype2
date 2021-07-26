@@ -1,26 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // Class variables
-    private int gameScore = 0;
+    public bool isGameOver;
 
-    private int gameLives = 3;
+    [SerializeField] private int gameScore = 0;
+    [SerializeField] private int gameLives = 3;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Debug.Log("Game Lives: " + gameLives);
-        Debug.Log("Score: " + gameScore);
+        UpdateLives();
+        UpdateScore();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateScore()
     {
-
+        scoreText.text = "Score: " + gameScore;
     }
+
+    private void UpdateLives()
+    {
+        livesText.text = "Lives: " + gameLives;
+    }
+
     // Method for adding/decreasing score
     public void AddScore(int amount)
     {
@@ -28,7 +36,7 @@ public class GameManager : MonoBehaviour
         if(gameLives > 0)
         {
             gameScore += amount;
-            Debug.Log("Score: " + gameScore);
+            UpdateScore();
         }
 
     }
@@ -37,10 +45,10 @@ public class GameManager : MonoBehaviour
     public void AddLives(int amount)
     {
         gameLives += amount;
-        // Check that player hasnt already finished the game
-        if (gameLives > 0)
+        // Check that player has not already finished the game
+        if (gameLives >= 0)
         {
-            Debug.Log("Lives: " + gameLives);
+            UpdateLives();
         }
     }
 
@@ -49,19 +57,7 @@ public class GameManager : MonoBehaviour
         if (gameLives == 0)
         {
             Debug.Log("Game Over!");
+            isGameOver = true;
         }
-    }
-
-    // Properties for variables
-    public int Score
-    {
-        get => gameScore;
-        set => gameScore = value;
-    }
-
-    public int Lives
-    {
-        get => gameLives;
-        set => gameLives = value;
     }
 }

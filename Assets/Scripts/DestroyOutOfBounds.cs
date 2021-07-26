@@ -25,8 +25,8 @@ public class DestroyOutOfBounds : MonoBehaviour
         }
         else if (transform.position.z < lowerBound) // If an anmial has escaped past the player then the game is done
         {
-            // Decrease lives then announce lives remaining
-            gameManager.AddLives(-1);
+            // Decrease score then update UI to reflect
+            gameManager.AddScore(-5);
             // Destroy this object
             Destroy(gameObject);
             // Check if game over when lives hit 0
