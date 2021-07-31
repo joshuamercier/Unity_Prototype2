@@ -7,7 +7,7 @@ public class DestroyOutOfBounds : MonoBehaviour
     // Class variables
     private float topBound = 30;
     private float lowerBound = -5;
-    private float rightBound = 30;
+    private float rightBound = 25;
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -19,11 +19,16 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         // If an object goes past the game boundaries, remove that object
-        if (transform.position.z > topBound || transform.position.x > rightBound)
+        if(transform.position.z > topBound)
+        {
+            // Instead of destroying simply set inactive
+            gameObject.SetActive(false);
+        }
+        else if (transform.position.x > rightBound)
         {
             Destroy(gameObject);
         }
-        else if (transform.position.z < lowerBound) // If an anmial has escaped past the player then the game is done
+        else if (transform.position.z < lowerBound) // If an animal has escaped past the player then decrease score
         {
             // Decrease score then update UI to reflect
             gameManager.AddScore(-5);

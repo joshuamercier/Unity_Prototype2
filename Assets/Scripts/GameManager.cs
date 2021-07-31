@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreGameOverText;
     [SerializeField] private GameObject spawnManager;
+    [SerializeField] private AudioSource backgroundMusic;
 
     private void Update()
     {
@@ -107,10 +108,15 @@ public class GameManager : MonoBehaviour
     {
         // Disable the title screen when starting the game
         titleScreen.gameObject.SetActive(false);
+        // Enable the spawn manager for animals to spawn
         spawnManager.SetActive(true);
+        // Update the UI for lives and score
         UpdateLives();
         UpdateScore();
+        // Enable flag
         isGameStarted = true;
+        // Enable the games background music
+        backgroundMusic.Play();
     }
 
     private void SetGameOverScoreText()

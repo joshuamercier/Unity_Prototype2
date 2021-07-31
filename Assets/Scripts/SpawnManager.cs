@@ -9,8 +9,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] obstaclesPrefabs; // Array of animal obstacles
 
     private float spawnRangeX = 20.0f;          // Range of spawn for X coordiante
-    private float spawnRangeUpperZ = 20.0f;     // Upper Range of spawn for Z coordiante
-    private float spawnRangeLowerZ = -1.0f;      // Lower Range of spawn for Z coordiante
+    private float spawnRangeUpperZ = 18.0f;     // Upper Range of spawn for Z coordiante
+    private float spawnRangeLowerZ = -3.5f;     // Lower Range of spawn for Z coordiante
     private float startDelay = 2.0f;            // Seconds of delay for animal spawning to begin
     private float spawnInterval = 1.5f;         // Seconds between each animal spawn
     private GameManager gameManager;

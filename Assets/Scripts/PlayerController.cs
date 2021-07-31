@@ -46,8 +46,13 @@ public class PlayerController : MonoBehaviour
         // Check that player is throwing
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Launch food projectile
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            // Get an object object from the pool
+            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+            if (pooledProjectile != null)
+            {
+                pooledProjectile.SetActive(true); // activate it
+                pooledProjectile.transform.position = transform.position; // position it at player
+            }
         }
 
         horizontalInput = Input.GetAxis("Horizontal");

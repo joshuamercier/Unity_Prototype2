@@ -22,13 +22,19 @@ public class DetectCollisions : MonoBehaviour
     {
         if (other.tag.Equals("Projectile") && !gameObject.tag.Equals("Obstacle"))
         {
-            // Destroy the projectile object
-            Destroy(other.gameObject);
+            // Play feeding sound
+            AudioSource feedSound = gameObject.GetComponent<AudioSource>();
+            feedSound.Play();
+            // Deactivate the projectile object
+            other.gameObject.SetActive(false);
             // Feed food to the animal
             gameObject.GetComponent<AnimalHunger>().FeedAnimal(1);
         }
         else if (other.tag.Equals("Player") && gameObject.tag.Equals("Obstacle"))
         {
+            // Grab player audio source and play it
+            AudioSource playerBiteSound = other.GetComponent<AudioSource>();
+            playerBiteSound.Play();
             // Decrease lives then announce lives remaining
             gameManager.AddLives(-1);
             // Destroy this object
